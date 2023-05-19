@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+        <h1>{{user.first_name}} is Logged in! </h1>
+        <p>please logout to create a new account.....</p>
+        {% else %}
+        <div>
+            <b><a href="/">Home</a></b>
+            <b>|</b>
+            <b><a href="/logout/">Logout</a></b>
+            <b>|</b>
+            <b><a href="/register/">Register</a></b>
+            <b></b>
+            <b><a href="/login/">Login</a></b>
+        </div>
+        <br>
+        <h1>REGISTER</h1>
+        <br>
+        <form action="/register/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username"><br>
+            <input type="text" name="first_name" placeholder="First name"><br>
+            <input type="text" name="last_name" placeholder="Last name"><br>
+            <input type="email" name="email" placeholder="Email"><br>
+            <input type="password" name="password" placeholder="Password"><br>
+            <input type="password" name="cpassword" placeholder="Confirm Password"><br>
+            <input type="submit">
+
+        </form>
+        {% for msg in messages %}
+            {{msg}}
+        {% endfor %}
+        {% endif %}
+    </body>
+</html>
