@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages,auth
 from django.contrib.auth.models import User
-from twilio.rest import Client
 import urllib.parse
 from django.http import JsonResponse
 from . models import Image
@@ -88,5 +87,7 @@ def whatsapp_redirect_with_image(request):
     # Combine the message and image base64 in the URL
     whatsapp_url = f"https://wa.me/{company_phone_number}?text={message}%0a{image_data}"
     return redirect(whatsapp_url)
+
+
 
 
